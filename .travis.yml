@@ -15,9 +15,11 @@ before_install:
 
 install:
   - pip install -r requirements.txt
+  - docker build -t tls-scan .
 
 script:
   - ./tls_scan.py -c artioml.net
+  - docker run --rm -it tls-scan ./tls_scan.py -
 
 notifications:
   slack:
